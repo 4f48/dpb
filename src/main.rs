@@ -1,6 +1,6 @@
 use reqwest::{Client, Error, Response};
 use serde::Deserialize;
-use serde_json::json;
+use serde_json::{json, Value};
 
 #[derive(Deserialize, Debug)]
 struct ConfigFile {
@@ -40,13 +40,16 @@ async fn main() {
     dbg!(response);
 }
 
-async fn ping(client: &Client, api_key: String, secret_key: String) -> Result<Response, Error> {
-    client
+async fn ping(client: &Client, api_key: String, secret_key: String) -> Result<Value, Error> {
+    let res = client
         .post("https://api.porkbun.com/api/json/v3/ping")
         .json(&json!({
             "secretapikey": secret_key,
             "apikey": api_key
         }))
         .send()
-        .await
+        .await?
+        .json()
+        .await?;
+    Ok(res)
 }
