@@ -1,7 +1,0 @@
-[config]
-api_key = "123"
-secret_key = "456"
-
-[record]
-domain = "git.4f48.dev"
-rtype = "A"
