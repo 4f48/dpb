@@ -11,6 +11,10 @@ env:
 
 jobs:
   build:
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +24,10 @@ jobs:
         run: cargo clippy
       - name: Build
         run: cargo build --release
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1.4.3
+        with:
+          subject-path: ./target/release/dpb
       - name: Upload build artifact
         uses: actions/upload-artifact@v4.4.0
         with:
