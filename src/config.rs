@@ -1,32 +1,34 @@
 use serde::Deserialize;
+use toml::value::Array;
 
-#[derive(Deserialize, Debug)]
-pub struct ConfigFile {
+#[allow(non_snake_case)]
+#[derive(Clone, Debug, Deserialize)]
+pub struct Toml {
     pub config: Config,
-    pub record: Record,
+    pub A: A,
+    pub AAAA: AAAA,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct Config {
-    pub api_key: String,
-    pub secret_key: String,
-}
-
-#[derive(Deserialize, Debug)]
-pub struct Record {
+    pub key: String,
+    pub secret: String,
     pub domain: String,
-    pub subdomain: String,
-    pub r#type: RecordType,
 }
 
-#[derive(Deserialize, Debug)]
-pub enum RecordType {
-    A,
-    Aaaa,
-    Both,
+#[derive(Clone, Debug, Deserialize)]
+pub struct A {
+    pub subdomains: Array,
 }
 
-pub async fn config() -> Result<ConfigFile, Box<dyn std::error::Error>> {
-    let config = std::fs::read_to_string("dpb.toml")?;
-    Ok(toml::from_str::<ConfigFile>(&config)?)
+#[allow(clippy::upper_case_acronyms)]
+#[derive(Clone, Debug, Deserialize)]
+pub struct AAAA {
+    pub subdomains: Array,
+}
+
+pub fn get_config(file_path: &str) -> Result<Toml, Box<dyn std::error::Error>> {
+    Ok(toml::from_str::<Toml>(&std::fs::read_to_string(
+        file_path,
+    )?)?)
 }
