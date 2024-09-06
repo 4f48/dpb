@@ -1,8 +1,11 @@
 use crate::config::Config;
 
+use reqwest::header::USER_AGENT;
 use serde::Deserialize;
 use serde_json::json;
 use std::net::{Ipv4Addr, Ipv6Addr};
+
+const DPB_USERAGENT: &str = "4f48/dpb@1.0.0-rc.2 (0x4f48@proton.me)";
 
 #[allow(non_snake_case, unused)]
 #[derive(Deserialize, Debug)]
@@ -24,6 +27,7 @@ pub fn get_ipv4(
 ) -> Result<GetIpV4, reqwest::Error> {
     let res: GetIpV4 = client
         .post("https://api-ipv4.porkbun.com/api/json/v3/ping")
+        .header(USER_AGENT, DPB_USERAGENT)
         .json(&json!({
             "secretapikey": config.secret,
             "apikey": config.key
@@ -39,6 +43,7 @@ pub fn get_ipv6(
 ) -> Result<GetIpV6, reqwest::Error> {
     let res: GetIpV6 = client
         .post("https://api.porkbun.com/api/json/v3/ping")
+        .header(USER_AGENT, DPB_USERAGENT)
         .json(&json!({
             "secretapikey": config.secret,
             "apikey": config.key
@@ -59,6 +64,7 @@ pub fn edit_a(
             "https://api.porkbun.com/api/json/v3/dns/editByNameType/{}/A/{}",
             config.domain, subdomain
         ))
+        .header(USER_AGENT, DPB_USERAGENT)
         .json(&json!({
             "secretapikey": config.secret,
             "apikey": config.key,
@@ -79,6 +85,7 @@ pub fn edit_aaaa(
             "https://api.porkbun.com/api/json/v3/dns/editByNameType/{}/AAAA/{}",
             config.domain, subdomain
         ))
+        .header(USER_AGENT, DPB_USERAGENT)
         .json(&json!({
             "secretapikey": config.secret,
             "apikey": config.key,
