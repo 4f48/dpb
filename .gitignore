@@ -4,6 +4,3 @@
 **/*.rs.bk
 
 *.pdb
-
-# config file containing Porkbun API keys
-dpb.toml

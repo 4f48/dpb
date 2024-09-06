@@ -1,0 +1,10 @@
+[config]
+key = ""
+secret = ""
+domain = ""
+
+[A]
+subdomains = []
+
+[AAAA]
+subdomains = []
