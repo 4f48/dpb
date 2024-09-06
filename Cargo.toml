@@ -9,4 +9,5 @@ http = "1.1.0"
 reqwest = { version = "0.12.5", features = ["json", "blocking"] }
 serde = { version = "1.0.204", features = ["derive"] }
 serde_json = "1.0.120"
+tokio = { version = "1.40.0", features = [ "time" ] }
 toml = "0.8.16"

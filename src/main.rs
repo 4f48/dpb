@@ -5,12 +5,14 @@ use crate::config::{get_config, Toml};
 use crate::http::{edit_a, edit_aaaa, get_ipv4, get_ipv6};
 
 use clap::Parser;
+use std::thread::sleep;
+use std::time::Duration;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
     #[arg(short, long)]
-    interval: Option<u32>,
+    interval: Option<u64>,
 
     #[arg(short, long, default_value_t = String::from("dpb.toml"))]
     config: String,
@@ -23,9 +25,11 @@ fn main() {
     let client = reqwest::blocking::Client::new();
 
     match args.interval {
-        Some(_interval) => {
-            todo!()
-        }
+        Some(i) => loop {
+            edit_a_records(&config, &client);
+            edit_aaaa_records(&config, &client);
+            sleep(Duration::from_secs(i));
+        },
         None => {
             edit_a_records(&config, &client);
             edit_aaaa_records(&config, &client);
