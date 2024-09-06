@@ -5,7 +5,7 @@ use serde_json::json;
 use std::net::{Ipv4Addr, Ipv6Addr};
 
 #[allow(non_snake_case, unused)]
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GetIpV4 {
     pub status: String,
     pub yourIp: Ipv4Addr,
@@ -51,7 +51,7 @@ pub fn get_ipv6(
 pub fn edit_a(
     client: &reqwest::blocking::Client,
     config: &Config,
-    subdomain: String,
+    subdomain: &str,
     ip: &Ipv4Addr,
 ) -> Result<(), reqwest::Error> {
     client
@@ -71,7 +71,7 @@ pub fn edit_a(
 pub fn edit_aaaa(
     client: &reqwest::blocking::Client,
     config: &Config,
-    subdomain: String,
+    subdomain: &str,
     ip: &Ipv6Addr,
 ) -> Result<(), reqwest::Error> {
     client

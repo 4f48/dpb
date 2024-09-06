@@ -1,13 +1,15 @@
 [package]
 name = "dpb"
-version = "1.0.0-beta.1"
+version = "1.0.0-rc.1"
 edition = "2021"
 
 [dependencies]
 clap = { version = "4.5.16", features = ["derive"] }
 http = "1.1.0"
+log = "0.4.22"
 reqwest = { version = "0.12.5", features = ["json", "blocking"] }
 serde = { version = "1.0.204", features = ["derive"] }
 serde_json = "1.0.120"
+stderrlog = "0.6.0"
 tokio = { version = "1.40.0", features = [ "time" ] }
 toml = "0.8.16"
