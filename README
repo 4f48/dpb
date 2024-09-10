@@ -1,0 +1,12 @@
+Porkbun DDNS client (Dynamic Porkbun)
+
+dpb is a lightweight, fast, and configurable Porkbun DDNS client. It can be used to periodically update A and AAAA records with your IP address. This is useful if you have a dynamic IP address, and your ISP won't give you a static one.
+
+To use dpb, a configuration file is required in the same directory as the executable, named dpb.toml (can be configured). Run the executable with the -h flag to get help on how to use dpb.
+
+You can download a pre-built binary from GitHub Releases, or you can build one yourself. No additional system dependencies are needed to build dpb, except the Rust toolchain, and Cargo.
+
+Your IP address is acquired by pinging the Porkbun API. No third-party network services are accessed by dpb.
+
+Copyright (C) 2024 Oliver Pirger
+SPDX-License-Identifier: GPL-3.0-only
