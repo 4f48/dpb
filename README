@@ -8,5 +8,5 @@ You can download a pre-built binary from GitHub Releases, or you can build one y
 
 Your IP address is acquired by pinging the Porkbun API. No third-party network services are accessed by dpb.
 
-Copyright (C) 2024 Oliver Pirger
+Copyright (C) 2024-2026 Oliver Pirger
 SPDX-License-Identifier: GPL-3.0-only
