@@ -23,7 +23,7 @@ use serde::Deserialize;
 use serde_json::json;
 use std::net::{Ipv4Addr, Ipv6Addr};
 
-const DPB_USERAGENT: &str = "github.com/4f48/dpb@1.0.0 (0x4f48@proton.me)";
+const DPB_USERAGENT: &str = "github.com/4f48/dpb@1.0.5 (0x4f48@proton.me)";
 
 #[allow(non_snake_case, unused)]
 #[derive(Deserialize, Debug)]
